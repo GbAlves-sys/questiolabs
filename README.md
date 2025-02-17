@@ -134,7 +134,7 @@ O **QuestioLabs** é uma solução moderna e eficiente para quem busca uma ferra
 
 ## Roadmap para o Desenvolvimento
 
-### **Fase 1: Configuração Inicial e Autenticação**
+### **Fase 1: Configuração Inicial e Autenticação (  )**
 **Duração:** 1 semana  
 **Objetivo:** Configurar o ambiente de desenvolvimento e implementar a autenticação de usuários.
 
@@ -145,7 +145,7 @@ O **QuestioLabs** é uma solução moderna e eficiente para quem busca uma ferra
 
 ---
 
-### **Fase 2: Banco de Dados e Modelos**
+### **Fase 2: Banco de Dados e Modelos (  )**
 **Duração:** 1 semana  
 **Objetivo:** Criar os modelos do banco de dados e configurar o SQLAlchemy.
 
@@ -156,7 +156,7 @@ O **QuestioLabs** é uma solução moderna e eficiente para quem busca uma ferra
 
 ---
 
-### **Fase 3: Páginas de Questões**
+### **Fase 3: Páginas de Questões (  )**
 **Duração:** 2 semanas  
 **Objetivo:** Implementar as funcionalidades relacionadas à criação, edição e listagem de questões.
 
@@ -167,7 +167,7 @@ O **QuestioLabs** é uma solução moderna e eficiente para quem busca uma ferra
 
 ---
 
-### **Fase 4: Páginas de Provas**
+### **Fase 4: Páginas de Provas (  )**
 **Duração:** 2 semanas  
 **Objetivo:** Implementar as funcionalidades relacionadas à criação, edição e listagem de provas.
 
@@ -179,7 +179,7 @@ O **QuestioLabs** é uma solução moderna e eficiente para quem busca uma ferra
 
 ---
 
-### **Fase 5: Funcionalidades Adicionais**
+### **Fase 5: Funcionalidades Adicionais (  )**
 **Duração:** 1 semana  
 **Objetivo:** Implementar funcionalidades extras e ajustes finais.
 
@@ -190,7 +190,7 @@ O **QuestioLabs** é uma solução moderna e eficiente para quem busca uma ferra
 
 ---
 
-### **Fase 6: Deployment e Entrega**
+### **Fase 6: Deployment e Entrega (  )**
 **Duração:** 1 semana  
 **Objetivo:** Preparar o projeto para deployment e entrega final.
 
@@ -199,22 +199,3 @@ O **QuestioLabs** é uma solução moderna e eficiente para quem busca uma ferra
 2. Fazer o deployment em um serviço de cloud.
 3. Criar documentação do projeto.
 4. Realizar testes finais em produção.
-
----
-
-### **Cronograma Resumido**
-| **Fase**                     | **Duração** | **Entrega Esperada**                     |
-|-------------------------------|-------------|------------------------------------------|
-| Configuração Inicial e Autenticação | 1 semana    | Ambiente configurado e autenticação funcional. |
-| Banco de Dados e Modelos      | 1 semana    | Modelos do banco de dados criados e testados. |
-| Páginas de Questões           | 2 semanas   | Funcionalidades de questões implementadas. |
-| Páginas de Provas             | 2 semanas   | Funcionalidades de provas implementadas. |
-| Funcionalidades Adicionais    | 1 semana    | Páginas estáticas e melhorias finais.   |
-| Deployment e Entrega          | 1 semana    | Projeto em produção e documentado.      |
-
----
-
-### **Considerações Finais**
-- **Metodologia Ágil:** O projeto pode ser gerenciado usando metodologias ágeis (ex: Scrum), com sprints de 1 semana e reuniões diárias (daily meetings).
-- **Priorização:** As funcionalidades mais críticas (autenticação, criação de questões e provas) devem ser priorizadas.
-- **Feedback Contínuo:** Coletar feedback do cliente/usuário durante o desenvolvimento para ajustar o roadmap conforme necessário.
