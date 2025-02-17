@@ -1,4 +1,81 @@
+# QuestioLabs - Ferramenta de Criação de Questões e Provas
+
+## Descrição do Projeto
+
+O **QuestioLabs** é uma ferramenta web desenvolvida para facilitar a criação, organização e gerenciamento de questões e provas. Voltado principalmente para educadores, professores e instituições de ensino, o projeto permite a criação de questões objetivas e discursivas, além da montagem de provas personalizadas com base em critérios como tags, habilidades e descritores.
+
+---
+
+## Funcionalidades Principais
+
+### 1. **Autenticação de Usuários**
+- Login e cadastro simples com usuário e senha.
+- Sessões seguras para manter o usuário logado.
+
+### 2. **Criação de Questões**
+- Criação de questões objetivas e discursivas com suporte a rich text (formatação avançada).
+- Adição de recursos de apoio, comandos, alternativas e gabaritos.
+- Uso de tags e habilidades/descritores para organizar as questões.
+
+### 3. **Banco de Questões**
+- Listagem de todas as questões cadastradas.
+- Filtros por tags e habilidades.
+- Paginação para facilitar a navegação.
+
+### 4. **Criação de Provas**
+- Geração de provas aleatórias com base em filtros.
+- Seleção manual de questões para montagem de provas.
+- Pré-visualização e salvamento de provas.
+
+### 5. **Banco de Provas**
+- Listagem de todas as provas criadas.
+- Filtros por tags e habilidades.
+- Opção de visualizar, editar ou excluir provas.
+
+### 6. **Impressão de Provas**
+- Funcionalidade de impressão com layout otimizado para PDF.
+
+### 7. **Interface Amigável**
+- Uso de rich text (Quill.js) para edição de questões.
+- Design responsivo e intuitivo.
+
+---
+
+## Tecnologias Utilizadas
+
+- **Frontend:** HTML, CSS, JavaScript (com Quill.js para rich text).
+- **Backend:** Python com Flask para lógica de negócio e autenticação.
+- **Banco de Dados:** SQLite (com SQLAlchemy para ORM).
+- **Deployment:** Serviços de cloud como Heroku, AWS ou Google Cloud.
+
+---
+
+## Objetivo do Projeto
+
+O **QuestioLabs** tem como objetivo simplificar o processo de criação e gerenciamento de questões e provas, permitindo que educadores foquem mais no conteúdo e menos na organização. Com funcionalidades como filtros, tags e geração de provas aleatórias, a ferramenta busca ser uma solução completa para necessidades educacionais.
+
+---
+
+## Público-Alvo
+
+- Professores e educadores.
+- Instituições de ensino.
+- Criadores de conteúdo educacional.
+
+---
+
+## Benefícios
+
+- **Eficiência:** Reduz o tempo necessário para criar e organizar questões e provas.
+- **Organização:** Uso de tags e habilidades para classificar e filtrar questões.
+- **Flexibilidade:** Geração de provas aleatórias ou personalizadas.
+- **Acesso Global:** Deployment em cloud para acesso de qualquer lugar.
+
+---
+
 # QuestioLabs - Estruturação e Roadmap
+
+O **QuestioLabs** é uma solução moderna e eficiente para quem busca uma ferramenta completa e fácil de usar para gerenciar questões e provas. 🚀
 
 ## Estrutura do Projeto
 
