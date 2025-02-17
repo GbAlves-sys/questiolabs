@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Banco de Provas</h2>
+    <a href="{{ url_for('exams.create_random_exam') }}" class="btn btn-primary mb-3">Nova Prova Aleatória</a>
+    
+    <div class="list-group">
+        {% for exam in exams %}
+            <div class="list-group-item">
+                <h5>{{ exam.name }}</h5>
+                <p>Tipo: {{ exam.type }}</p>
+                <a href="{{ url_for('exams.preview_exam', exam_id=exam.id) }}" class="btn btn-sm btn-info">Visualizar</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

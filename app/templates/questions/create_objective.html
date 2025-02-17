@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Criar Questão Objetiva</h2>
+    <form method="POST" action="{{ url_for('questions.create_objective') }}">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-group">
+            <label>Recurso de Apoio</label>
+            <div id="support-editor" style="height: 150px;"></div>
+            <textarea id="support" name="support" hidden></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Comando</label>
+            <div id="command-editor" style="height: 150px;"></div>
+            <textarea id="command" name="command" hidden></textarea>
+        </div>
+        <div class="form-group">
+            <label>Tags (separadas por vírgula)</label>
+            <input 
+                type="text" 
+                name="tags" 
+                class="form-control" 
+                placeholder="Ex: Matemática, Geometria"
+                required
+            >
+            <small class="form-text text-muted">Insira até 5 tags.</small>
+        </div>
+        <!-- Alternativas -->
+        {% for i in range(1, 6) %}
+            <div class="form-group">
+                <label>Alternativa {{ i }}</label>
+                <div id="alt{{ i }}-editor" style="height: 100px;"></div>
+                <textarea id="alt{{ i }}" name="alt{{ i }}" hidden></textarea>
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+
+    <script>
+        
+
+// Adicione o módulo KaTeX ao Quill
+const quill = new Quill('#editor', {
+    modules: {
+        toolbar: [
+            // ... (opções anteriores)
+            ['formula']
+        ],
+        formula: true  // Habilita suporte a fórmulas
+    }
+});
+
+        // Inicializar editores
+        const supportEditor = new Quill('#support-editor', quillOptions);
+        const commandEditor = new Quill('#command-editor', quillOptions);
+        const altEditors = [];
+        for (let i = 1; i <= 5; i++) {
+            altEditors.push(new Quill(`#alt${i}-editor`, quillOptions));
+        }
+
+        // Atualizar textareas antes do envio
+        document.querySelector('form').addEventListener('submit', function() {
+            document.getElementById('support').value = supportEditor.root.innerHTML;
+            document.getElementById('command').value = commandEditor.root.innerHTML;
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById(`alt${i}`).value = altEditors[i-1].root.innerHTML;
+            }
+        });
+    </script>
+    <script>
+        // Configuração do Quill.js
+        const quillOptions = {
+            modules: {
+                toolbar: [
+                    [{ 'header': [1, 2, false] }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ 'color': [] }, { 'background': [] }],
+                    ['blockquote', 'code-block'],
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    ['link', 'image', 'video'],
+                    ['formula'],
+                    ['clean']
+                ]
+            },
+            theme: 'snow'
+        };
+    
+        // Inicializar editores
+        const editors = {
+            support: new Quill('#support-editor', quillOptions),
+            command: new Quill('#command-editor', quillOptions),
+            alt1: new Quill('#alt1-editor', quillOptions),
+            alt2: new Quill('#alt2-editor', quillOptions),
+            alt3: new Quill('#alt3-editor', quillOptions),
+            alt4: new Quill('#alt4-editor', quillOptions),
+            alt5: new Quill('#alt5-editor', quillOptions)
+        };
+    
+        // Atualizar textareas antes do envio
+        document.querySelector('form').addEventListener('submit', function() {
+            document.getElementById('support').value = editors.support.root.innerHTML;
+            document.getElementById('command').value = editors.command.root.innerHTML;
+            document.getElementById('alt1').value = editors.alt1.root.innerHTML;
+            document.getElementById('alt2').value = editors.alt2.root.innerHTML;
+            document.getElementById('alt3').value = editors.alt3.root.innerHTML;
+            document.getElementById('alt4').value = editors.alt4.root.innerHTML;
+            document.getElementById('alt5').value = editors.alt5.root.innerHTML;
+        });
+    </script>
+{% endblock %}

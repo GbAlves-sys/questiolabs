@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>{{ exam.name }}</h2>
+    {% for question in exam.questions %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5>Questão {{ loop.index }}</h5>
+                <div class="support">{{ question.support|safe }}</div>
+                <div class="command">{{ question.command|safe }}</div>
+                {% if question.type == "objetiva" %}
+                    <ul>
+                        {% for key, value in question.alternatives.items() %}
+                            <li>{{ key }}. {{ value|safe }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    <a href="{{ url_for('exams.list_exams') }}" class="btn btn-secondary">Voltar</a>
+    {% endblock %}
+<!-- Adicione ao final do template -->
+<div class="mt-4">
+    <h4>Gabarito</h4>
+    {% for question in questions %}
+        <p>Questão {{ loop.index }}: {{ question.correct_answer }}</p>
+    {% endfor %}
+</div>

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 class="mb-4">Banco de Questões</h2>
+    
+    <!-- Botão para criar nova questão -->
+    <a 
+        href="{{ url_for('questions.create_objective') }}" 
+        class="btn btn-primary mb-3"
+    >
+        Nova Questão Objetiva
+    </a>
+
+    <!-- Listagem de questões -->
+    <div class="list-group">
+        {% for question in questions %}
+            <div class="list-group-item">
+                <h5>{{ question.title }}</h5>
+                <p>Tipo: {{ question.type }}</p>
+                <p>Tags: 
+                    {% for tag in question.tags %}
+                        <span class="badge bg-secondary">{{ tag.name }}</span>
+                    {% endfor %}
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
