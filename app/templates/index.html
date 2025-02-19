@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Banco de Questões</h2>
+<a href="{{ url_for('questions.create') }}" class="btn">Criar Nova Questão</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Comando</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for question in questions %}
+        <tr>
+            <td>{{ question.id }}</td>
+            <td>{{ question.type }}</td>
+            <td>{{ question.command }}</td>
+            <td>
+                <a href="{{ url_for('questions.edit', id=question.id) }}">Editar</a>
+                <form action="{{ url_for('questions.delete', id=question.id) }}" method="POST" style="display:inline;">
+                    <button type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

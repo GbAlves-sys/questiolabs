@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Editar Questão</h2>
+<form method="POST">
+    <label for="type">Tipo:</label>
+    <select id="type" name="type" required>
+        <option value="objective" {% if question.type == 'objective' %}selected{% endif %}>Objetiva</option>
+        <option value="discursive" {% if question.type == 'discursive' %}selected{% endif %}>Discursiva</option>
+    </select>
+
+    <label for="command">Comando:</label>
+    <textarea id="command" name="command" required>{{ question.command }}</textarea>
+
+    <label for="answer_key">Gabarito:</label>
+    <textarea id="answer_key" name="answer_key" required>{{ question.answer_key }}</textarea>
+
+    <label for="support_text">Recurso de Apoio (opcional):</label>
+    <textarea id="support_text" name="support_text">{{ question.support_text }}</textarea>
+
+    <label for="tags">Tags (separadas por vírgula):</label>
+    <input type="text" id="tags" name="tags" value="{{ question.tags | join(',') }}">
+
+    <label for="skills">Habilidades (separadas por vírgula):</label>
+    <input type="text" id="skills" name="skills" value="{{ question.skills | join(',') }}">
+
+    <button type="submit">Salvar</button>
+</form>
+{% endblock %}
