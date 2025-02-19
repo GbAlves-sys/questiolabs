@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Bem-vindo ao QuestioLabs!</h2>
-    <p>Essa é a página inicial do seu app.</p>
+<h2>Bem-vindo ao QuestioLabs, {{ current_user.username }}!</h2>
+<div class="options">
+    <a href="{{ url_for('questions.index') }}">Questões</a> 
+    <a href="{{ url_for('exams.index') }}" class="btn">Gerenciar Provas</a>
+</div>
 {% endblock %}
