@@ -1,38 +1,26 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-from config import Config
 from flask_login import LoginManager
-from app.main.routes import main_bp
-from app.questions.routes import questions_bp
+from app.models import db
+from app.exams.routes import exams_bp  # Importando o blueprint dos exames
+from app.auth.routes import auth_bp  # Importando o blueprint de autenticação
 
-app = Flask(__name__)
-app.config.from_object(Config)
+# Inicializando o banco de dados e o gerenciador de login
+db = SQLAlchemy()
+login_manager = LoginManager()
 
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+def create_app():
+    app = Flask(__name__)
 
-# Importar blueprints e modelos depois para evitar dependência circular
-from app.auth.routes import auth_bp
-from app.models import User
+    # Configurações do app
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+    app.config['SECRET_KEY'] = 'your_secret_key'
+    
+    db.init_app(app)  # Inicializa o banco de dados
+    login_manager.init_app(app)  # Inicializa o Flask-Login
 
-app.register_blueprint(auth_bp)
+    # Registra os blueprints
+    app.register_blueprint(exams_bp, url_prefix='/exams')
+    app.register_blueprint(auth_bp, url_prefix='/auth')
 
-@app.shell_context_processor
-def make_shell_context():
-    return {'db': db, 'User': User}
-
-from app.questions.routes import questions_bp
-
-app.register_blueprint(questions_bp, url_prefix='/questions')
-
-login_manager = LoginManager(app)
-login_manager.login_view = 'auth.login'  # Rota de login
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
-
-app.register_blueprint(main_bp)
-
-app.register_blueprint(questions_bp, url_prefix='/questions')  
+    return app

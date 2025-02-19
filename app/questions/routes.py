@@ -58,4 +58,3 @@ def create_objective():
 def list_questions():
     questions = Question.query.all()
     return render_template('questions/list.html', questions=questions)
-

@@ -5,7 +5,7 @@ import random
 
 exams_bp = Blueprint('exams', __name__)
 
-@exams_bp.route('/exams')
+@exams_bp.route('/')
 @login_required
 def list_exams():
     exams = Exam.query.filter_by(user_id=current_user.id).all()
@@ -41,9 +41,3 @@ def preview_exam(exam_id):
             question.alternatives = dict(alternatives)
     
     return render_template('exams/preview.html', exam=exam, questions=shuffled_questions)
-
-@exams_bp.route('/preview/<int:exam_id>')
-@login_required
-def preview_exam(exam_id):
-    exam = Exam.query.get_or_404(exam_id)
-    return render_template('exams/preview.html', exam=exam)

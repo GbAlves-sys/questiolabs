@@ -1,8 +1,11 @@
-from flask_login import UserMixin  # Adicione esta linha
-from app import db
+from flask import current_app
+from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+from flask_login import UserMixin  # Importando UserMixin
 
+# Não há mais necessidade de importar db diretamente de __init__.py aqui
+db = SQLAlchemy()  # Declarando o db localmente
 
 # Tabela de associação para Questão <-> Tag (relação muitos-para-muitos)
 question_tags = db.Table(
@@ -11,10 +14,7 @@ question_tags = db.Table(
     db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'))
 )
 
-from app import db
-from werkzeug.security import generate_password_hash, check_password_hash
-
-class User(db.Model, UserMixin):  # Adicione UserMixin
+class User(db.Model, UserMixin):  # Herde de UserMixin
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
@@ -44,7 +44,7 @@ class Question(db.Model):
     def __repr__(self):
         return f"Questão '{self.title}'"
     
-    # Tabela de associação para Prova <-> Questão
+# Tabela de associação para Prova <-> Questão
 exam_questions = db.Table('exam_questions',
     db.Column('exam_id', db.Integer, db.ForeignKey('exam.id')),
     db.Column('question_id', db.Integer, db.ForeignKey('question.id'))
@@ -61,6 +61,3 @@ class Exam(db.Model):
 
     def __repr__(self):
         return f"Prova '{self.name}'"
-    
-
-
