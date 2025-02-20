@@ -4,6 +4,8 @@
 <h2>Banco de Questões</h2>
 <a href="{{ url_for('questions.create') }}" class="btn">Criar Nova Questão</a>
 
+<p>Página {{ questions.page }} de {{ questions.pages }}</p>
+
 <table>
     <thead>
         <tr>
@@ -14,7 +16,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for question in questions %}
+        {% for question in questions.items %}
         <tr>
             <td>{{ question.id }}</td>
             <td>{{ question.type }}</td>
@@ -29,4 +31,17 @@
         {% endfor %}
     </tbody>
 </table>
+
+<ul class="pagination">
+    {% if questions.has_prev %}
+    <li><a href="{{ url_for('questions.index', page=questions.prev_num) }}">Anterior</a></li>
+    {% endif %}
+    {% for page in questions.iter_pages() %}
+    <li><a href="{{ url_for('questions.index', page=page) }}">{{ page }}</a></li>
+    {% endfor %}
+    {% if questions.has_next %}
+    <li><a href="{{ url_for('questions.index', page=questions.next_num) }}">Próxima</a></li>
+    {% endif %}
+</ul>
+
 {% endblock %}
