@@ -2,5 +2,31 @@
 
 {% block content %}
 <h2>Banco de Provas</h2>
+<a href="{{ url_for('exams.create') }}" class="btn">Criar Nova Prova</a>
 
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Número de Questões</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for exam in exams %}
+        <tr>
+            <td>{{ exam.id }}</td>
+            <td>{{ exam.name }}</td>
+            <td>{{ exam.questions | length }}</td>
+            <td>
+                <a href="{{ url_for('exams.edit', id=exam.id) }}">Editar</a>
+                <form action="{{ url_for('exams.delete', id=exam.id) }}" method="POST" style="display:inline;">
+                    <button type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

@@ -14,7 +14,7 @@ question_skills = db.Table('question_skills',
     db.Column('skill_id', db.Integer, db.ForeignKey('skill.id'), primary_key=True)
 )
 
-class User(UserMixin, db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
@@ -25,25 +25,22 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+class Exam(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    questions = db.relationship('Question', backref='exam', lazy=True)
+
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    type = db.Column(db.String(10), nullable=False)  # 'objective' ou 'discursive'
-    support_text = db.Column(db.Text, nullable=True)  # Recurso de apoio
-    command = db.Column(db.Text, nullable=False)  # Comando da questão
-    answer_key = db.Column(db.Text, nullable=False)  # Gabarito
-    alternatives = db.relationship('Alternative', backref='question', lazy=True)  # Alternativas (apenas para questões objetivas)
-    tags = db.relationship('Tag', secondary=question_tags, lazy='subquery', backref=db.backref('questions', lazy=True))
-    skills = db.relationship('Skill', secondary=question_skills, lazy='subquery', backref=db.backref('questions', lazy=True))
-
-class Alternative(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.Text, nullable=False)  # Texto da alternativa
-    question_id = db.Column(db.Integer, db.ForeignKey('question.id'), nullable=False)
+    text = db.Column(db.String(100), nullable=False)
+    exam_id = db.Column(db.Integer, db.ForeignKey('exam.id'), nullable=False)
 
 class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), unique=True, nullable=False)
+    name = db.Column(db.String(100), nullable=False)
+    questions = db.relationship('Question', secondary=question_tags, backref='tags', lazy=True)
 
 class Skill(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), unique=True, nullable=False)
+    name = db.Column(db.String(100), nullable=False)
+    questions = db.relationship('Question', secondary=question_skills, backref='skills', lazy=True)
