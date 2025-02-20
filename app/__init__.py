@@ -20,11 +20,11 @@ def create_app():
     from app.auth import auth_bp
     from app.routes import main_bp
     from app.questions import questions_bp
-    from app.exams import exams_bp  # Importa o blueprint de provas
+    from app.exams import exams_bp
     app.register_blueprint(auth_bp)
     app.register_blueprint(main_bp)
     app.register_blueprint(questions_bp)
-    app.register_blueprint(exams_bp)  # Registra o blueprint de provas
+    app.register_blueprint(exams_bp)
 
     return app
 
